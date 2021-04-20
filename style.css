@@ -1,0 +1,40 @@
+body {
+    background-color:beige;
+}
+
+#timeText {
+    border: 0px solid black;
+
+    font-size: 5em;
+    font-weight: bold;
+    font-family: Arial;
+
+}
+
+#timeSinceVariable {
+    font-family: 'Roboto Mono', monospace;
+}
+
+#buildings {
+    border: 1px solid black;
+    margin-top: 10vh;
+}
+
+.disable-select {
+    -webkit-user-select: none;  
+    -moz-user-select: none;    
+    -ms-user-select: none;      
+    user-select: none;
+  }
+
+  .centeredHorizontally {
+    left: 50%;
+    margin-right: -50%;
+    transform: translate(-50%, -50%);
+  }
+
+  .centeredVertically {
+    top:50%;
+    position: absolute;
+  }
+

@@ -3,12 +3,21 @@ var shownVar = document.getElementById("timeSinceVariable");
 var buildingOneCount = Number(getCookie("buildingOneCount"));
 var incrementValue = 0;
 var buildingOneProduction = null;
+var buildingOneCost = 10;
 
 //speed at which time passes
 var incrementSpeed = 1000;
 
+//update building costs
+
+function updateBuildingCost() {
+
+  buildingOneCost = Math.round(buildingOneCount**1.8);
+
+}
+
 //amount of seconds added per time value and update every 1 sec
-function updateIncrementValue () {
+function updateIncrementValue() {
 
 incrementValue = buildingOneCount;
 
@@ -46,11 +55,15 @@ function addClick() {
 
 document.getElementById("buildingOneBuy").onclick = function () {
 
-  timeSince -=50;
+  if (buildingOneCost <= timeSince) {
+  timeSince -= buildingOneCost;
   buildingOneCount +=1;
+  updateBuildingCost();
   updateStatistics();
   updateVisual();
-    
+  } else {
+    alert("Not enough time!");
+  }   
 }
 
 //cookies
@@ -102,6 +115,8 @@ function updateVisual() {
   shownVar.innerHTML = timeSince;
   document.getElementById("buildingOneCountHTML").innerHTML = buildingOneCount;
   document.getElementById("buildingOneProductionHTML").innerHTML = buildingOneProduction;
+  document.getElementById("buildingOneCostHTML").innerHTML = buildingOneCost;
+
 
 }
 

@@ -3,7 +3,7 @@ body {
 }
 
 #timeText {
-    border: 0px solid black;
+    border: 1px solid black;
 
     font-size: 5em;
     font-weight: bold;
@@ -16,25 +16,35 @@ body {
 }
 
 #buildings {
-    border: 1px solid black;
+    border: 0px solid black;
     margin-top: 10vh;
 }
 
 .disable-select {
-    -webkit-user-select: none;  
-    -moz-user-select: none;    
-    -ms-user-select: none;      
-    user-select: none;
-  }
+  -webkit-user-select: none;  
+  -moz-user-select: none;    
+  -ms-user-select: none;      
+  user-select: none;
+}
 
-  .centeredHorizontally {
-    left: 50%;
-    margin-right: -50%;
-    transform: translate(-50%, -50%);
-  }
+.centeredHorizontally {
+  left: 50%;
+  margin-right: -50%;
+  transform: translate(-50%, -50%);
+}
 
-  .centeredVertically {
-    top:50%;
-    position: absolute;
-  }
+.centeredVertically {
+  top:50%;
+  position: absolute;
+}
 
+button {
+
+  color: green;
+}
+
+button:disabled {
+
+  color: red;
+
+}

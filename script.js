@@ -3,9 +3,9 @@ var shownVar = document.getElementById("timeSinceVariable");
 var buildingOneCount = Number(getCookie("buildingOneCount"));
 var incrementValue = 0;
 var buildingOneProduction = null;
-var buildingOneCost = 10;
+var buildingOneCost = Number(getCookie("buildingOneCost"));
 
-//speed at which time passes
+//speed at which time passes, base 1 second
 var incrementSpeed = 1000;
 
 //update building costs
@@ -46,8 +46,7 @@ setInterval(increment, incrementSpeed);
 //add seconds every time you click
 var clickValue = 1;
 
-document.onclick=addClick;
-function addClick() {
+document.getElementById("timeText").onclick = function addClick() {
 
     timeSince +=clickValue;
 
@@ -66,7 +65,28 @@ document.getElementById("buildingOneBuy").onclick = function () {
   }   
 }
 
+  //disables buttons
+
+function disableButtons() {
+
+  if (buildingOneCost > timeSince) {
+
+    document.getElementById("buildingOneBuy").disabled = true;
+
+  } else {
+
+    document.getElementById("buildingOneBuy").disabled = false;
+
+    }
+
+  }
+
+
+
+
+
 //cookies
+
 function setCookie(cname, cvalue, exdays) {
     var d = new Date();
     d.setTime(d.getTime() + (exdays * 24 * 60 * 60 * 1000));
@@ -74,25 +94,26 @@ function setCookie(cname, cvalue, exdays) {
     document.cookie = cname + "=" + cvalue + ";" + expires + ";path=/";
   }
   
-  function getCookie(cname) {
-    var name = cname + "=";
-    var ca = document.cookie.split(';');
-    for(var i = 0; i < ca.length; i++) {
-      var c = ca[i];
-      while (c.charAt(0) == ' ') {
-        c = c.substring(1);
-      }
-      if (c.indexOf(name) == 0) {
-        return c.substring(name.length, c.length);
-      }
+function getCookie(cname) {
+  var name = cname + "=";
+  var ca = document.cookie.split(';');
+  for(var i = 0; i < ca.length; i++) {
+    var c = ca[i];
+    while (c.charAt(0) == ' ') {
+      c = c.substring(1);
     }
-    return "";
+    if (c.indexOf(name) == 0) {
+      return c.substring(name.length, c.length);
+    }
   }
+  return "";
+}
 
 function saveCookie() {
     
   setCookie("savedTimeSince",timeSince,5000);
   setCookie("buildingOneCount",buildingOneCount,5000);
+  setCookie("buildingOneCost",buildingOneCost,5000);
 
 }
 
@@ -100,10 +121,12 @@ function saveCookie() {
 setInterval(saveCookie,1000);
 
 
-document.getElementById("resetCounter").onclick = function resetCounter () {
+//resetbutton resets game 100%
+document.getElementById("resetGame").onclick = function resetGame () {
 
   timeSince = 0;
   buildingOneCount = 0;
+  buildingOneCost = 10;
 
 }
 
@@ -116,6 +139,7 @@ function updateVisual() {
   document.getElementById("buildingOneCountHTML").innerHTML = buildingOneCount;
   document.getElementById("buildingOneProductionHTML").innerHTML = buildingOneProduction;
   document.getElementById("buildingOneCostHTML").innerHTML = buildingOneCost;
+  disableButtons();
 
 
 }
